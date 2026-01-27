@@ -93,9 +93,11 @@ if ($_POST['METHOD'] == 'POST') {
     $user_id = $_POST['user_id'];
     $last_update = $_POST['last_update'];
     $id_tariff = $_POST['id_tariff'];
+    $room = $_POST['room'];
+    $location = $_POST['location'];
     
-    $query = "INSERT INTO infants(document_number, first_name, lastname, birthdate, current_state, schedule, user_id, last_update, id_tariff) 
-              VALUES ('$document_number', '$first_name', '$lastname', '$birthdate', '$current_state', '$schedule', '$user_id', '$last_update', '$id_tariff')";
+    $query = "INSERT INTO infants(document_number, first_name, lastname, birthdate, current_state, schedule, user_id, last_update, id_tariff, room, location) 
+              VALUES ('$document_number', '$first_name', '$lastname', '$birthdate', '$current_state', '$schedule', '$user_id', '$last_update', '$id_tariff', '$room', '$location')";
     
     $queryAutoIncrement = "SELECT MAX(id) as id FROM infants";
     $resultado = metodoPost($query, $queryAutoIncrement);
@@ -116,11 +118,13 @@ if ($_POST['METHOD'] == 'PUT') {
     $user_id = $_POST['user_id'];
     $last_update = $_POST['last_update'];
     $id_tariff = $_POST['id_tariff'];
+    $room = $_POST['room'];
+    $location = $_POST['location'];
     
     // Nota la eliminación de comillas alrededor de los valores NULL
     $query = "UPDATE infants SET document_number='$document_number', first_name='$first_name', lastname='$lastname', 
               birthdate='$birthdate', current_state='$current_state', schedule='$schedule', user_id='$user_id', 
-              last_update='$last_update', id_tariff='$id_tariff' WHERE id='$id'";
+              last_update='$last_update', id_tariff='$id_tariff', room='$room', location='$location' WHERE id='$id'";
               
     $resultado = metodoPut($query);
     echo json_encode($resultado);
